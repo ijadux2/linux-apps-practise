@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, home-manager, ... }:
 
 {
   programs.kitty = {
@@ -10,6 +10,25 @@
     tab-size = "2";
     #etc
   };
+
+  programs.neovim = {
+    enable = true;
+    support.lua.config.enable = true;
+    support.config.nvimDirectory = "/home/ijadux2/.config/nvim/"
+    plugins = {
+      treesitter.enable = true;
+      catppuccin-mocha.theme.enable = true;
+      lazy.enable = true;
+    }; 
+    language.support = {
+     "lua"
+     "nix"
+     "css"
+    "html"
+    "javascript"
+    };
+  };
+
   programs.chromium.enable = true;
   
   programs.zsh = {
@@ -35,7 +54,15 @@
       kitty
       zsh
       chromium
+      neovim
     ];
+
+    home.file =  {
+    };
+
+    home.homeDirectory = "/home/ijadux2/";
+    home.homeUser = "ijadux2";
+
 
   };
 }
